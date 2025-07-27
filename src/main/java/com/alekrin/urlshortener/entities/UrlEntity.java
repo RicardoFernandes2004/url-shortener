@@ -23,7 +23,6 @@ public class UrlEntity {
 
     private String code;
     private String url;
-    private String shortened_url;
     private LocalDateTime created_at;
 
 }

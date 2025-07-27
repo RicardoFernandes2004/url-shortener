@@ -1,6 +1,7 @@
 package com.alekrin.urlshortener.controllers;
 
 
+import com.alekrin.urlshortener.entities.UrlEntity;
 import com.alekrin.urlshortener.services.shortenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,9 @@ public class ShortenController {
 
     // HTTP get requisition
     @PostMapping("/posturl")
-    public String shorten(@RequestBody String url) {
+    public String shorten(@RequestBody UrlEntity url) {
 
-        return url;
+        return "200";
     }
 
     @GetMapping("/geturl")
