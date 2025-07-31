@@ -30,7 +30,7 @@ public class ShortenController {
         return shortenService.shorten(url);
     }
 
-    // HTTP get requisition
+    // HTTP get requisition on api path
     @GetMapping("/{id}")
     public ResponseEntity<Void> getUrl(@PathVariable String id) {
 
