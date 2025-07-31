@@ -1,9 +1,6 @@
 package com.alekrin.urlshortener.infra;
 
-import com.alekrin.urlshortener.dtos.exceptions.ExistingIdException;
-import com.alekrin.urlshortener.dtos.exceptions.ExistingOriginalUrlException;
-import com.alekrin.urlshortener.dtos.exceptions.InvalidUrlException;
-import com.alekrin.urlshortener.dtos.exceptions.UrlNotFoundException;
+import com.alekrin.urlshortener.dtos.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,6 +31,12 @@ public class RestExceptionHandler {
     private ResponseEntity<RestErrorMessage> UrlNotFoundExceptionHandler(UrlNotFoundException e){
         RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.NOT_FOUND,e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
+    @ExceptionHandler(value = {RateLimitReachedException.class})
+    private ResponseEntity<RestErrorMessage> RateLimitReachedExceptionHandler(RateLimitReachedException e){
+        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.TOO_MANY_REQUESTS,e.getMessage());
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(errorMessage);
     }
 
 }
