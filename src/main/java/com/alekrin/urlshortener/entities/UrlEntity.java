@@ -2,23 +2,30 @@ package com.alekrin.urlshortener.entities;
 
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 
 
 @Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Document(collection = "urls")
 public class UrlEntity {
 
-
+    @Id
     @EqualsAndHashCode.Include
-    private String code;
+    @Setter
+    private String id;
 
+    @Setter
     private String url;
-    private LocalDateTime created_at;
+
+    private LocalDateTime createdAt;
+
+    public UrlEntity(){
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
